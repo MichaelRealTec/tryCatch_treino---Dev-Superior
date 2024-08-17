@@ -1,6 +1,7 @@
 package application;
 
-import java.util.InputMismatchException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -11,12 +12,25 @@ public class Program {
 		
 		Locale.setDefault(Locale.US);
 		// Scanner sc = new Scanner(System.in);
+		//method1();	
+		//System.out.println("End of program");
 		
+		File file = new File("C:\\temp\\in.txt");
+		Scanner sc = null;
 		
-		method1();
-		
-		System.out.println("End of program");
-		
+		try {
+			sc = new Scanner(file);
+			while(sc.hasNextLine()) {
+				System.out.println(sc.nextLine());
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Error opening file: " + e.getMessage());
+		} finally {
+			if(sc != null) {
+				sc.close();
+			}
+			System.out.println("Finally block executed");
+		}
 		
 		
 		/*
@@ -34,6 +48,7 @@ public class Program {
 		*/
 		
 	}
+	/*
 	public static void method1() {
 		System.out.println("***METHOD1 START***");
 		method2();
@@ -57,4 +72,5 @@ public class Program {
 		System.out.println("***METHOD2 END***");
 		sc.close();
 	}
+	*/
 }
